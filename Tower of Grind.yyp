@@ -38,6 +38,8 @@
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"Tileset","path":"sprites/Tileset/Tileset.yy",},},
+    {"id":{"name":"ts_tileset","path":"tilesets/ts_tileset/ts_tileset.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
