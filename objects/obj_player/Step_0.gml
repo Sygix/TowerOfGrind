@@ -19,19 +19,19 @@ if ((key_down && !place_meeting(x, y + movespd, tilemap_collision)) || (key_up &
 
 if (hsp == 0 && vsp == 0) {
     image_xscale = 1
-    sprite_index = spr_D_Idle
+    sprite_index = spr_Player_Front_Idle
 }
 
 if (key_left) {
     image_xscale = 1
-    sprite_index = spr_S_Walk
+    sprite_index = spr_Player_Side_Walk
 } else if (key_right) {
     image_xscale = -1
-    sprite_index = spr_S_Walk
+    sprite_index = spr_Player_Side_Walk
 } else if (key_up) {
     image_xscale = 1
-    sprite_index = spr_U_Walk
+    sprite_index = spr_Player_Back_Walk
 } else if (key_down) {
     image_xscale = 1
-    sprite_index = spr_D_Walk
+    sprite_index = spr_Player_Front_Walk
 }
