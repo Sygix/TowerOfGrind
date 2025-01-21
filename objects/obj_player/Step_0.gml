@@ -96,5 +96,6 @@ if (!is_attacking) {
             }
         }
     }
+    
     ds_list_destroy(hitByAttackNow)
 }
