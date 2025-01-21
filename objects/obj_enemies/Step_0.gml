@@ -1,14 +1,3 @@
-
-function start_chasing() {
-    enemy_state = ENEMY_STATE.CHASING;
-    movement_state = MOVEMENT_STATE.RUNNING;
-}
-
-function stop_chasing() {
-    enemy_state = ENEMY_STATE.SEARCHING;
-    movement_state = MOVEMENT_STATE.IDLE;
-}
-
 function check_proximity_for_chase() {
     if (distance_to_object(obj_player) < chase_range) {
         start_chasing();
@@ -47,9 +36,25 @@ function handle_movement() {
 
 function update_animation() {
     if (hsp == 0 && vsp == 0) {
-        image_speed = 0;
+        // Idle
+        if (direction > 45 && direction <= 135) {
+            sprite_index = spr_StickGoblin_Back_Idle;
+        } else if (direction > 225 && direction <= 315) {
+            sprite_index = spr_StickGoblin_Front_Idle;
+        } else {
+            sprite_index = spr_StickGoblin_Side_Idle;
+            image_xscale = (direction <= 180) ? 1 : -1;
+        }
     } else {
-        image_speed = 2;
+        // Moving
+        if (direction > 45 && direction <= 135) {
+            sprite_index = spr_StickGoblin_Back_Walk;
+        } else if (direction > 225 && direction <= 315) {
+            sprite_index = spr_StickGoblin_Front_Walk;
+        } else {
+            sprite_index = spr_StickGoblin_Side_Walk;
+            image_xscale = (direction <= 180) ? 1 : -1;
+        }
     }
 }
 

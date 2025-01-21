@@ -19,7 +19,17 @@ movement_state = MOVEMENT_STATE.IDLE;
 
 chase_range = 50;
 stop_chase_range = 50;
-runaway_range = 20;
-runaway_offset = 80;
+runaway_range = 80;
+runaway_offset = 180;
 
 tilemap_collision = layer_tilemap_get_id("Collision");
+
+function start_chasing() {
+    enemy_state = ENEMY_STATE.CHASING;
+    movement_state = MOVEMENT_STATE.RUNNING;
+}
+
+function stop_chasing() {
+    enemy_state = ENEMY_STATE.SEARCHING;
+    movement_state = MOVEMENT_STATE.IDLE;
+}
