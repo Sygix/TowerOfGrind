@@ -1,5 +1,6 @@
 if (other.creator != object_index) {
     health -= other.damage
+    show_debug_message("HIT")
     
     if (health <= 0) {
         is_dead = true

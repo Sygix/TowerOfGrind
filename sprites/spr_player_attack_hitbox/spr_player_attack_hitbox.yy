@@ -1,7 +1,7 @@
 {
   "$GMSprite":"",
   "%Name":"spr_player_attack_hitbox",
-  "bboxMode":0,
+  "bboxMode":2,
   "bbox_bottom":15,
   "bbox_left":0,
   "bbox_right":15,
@@ -19,7 +19,7 @@
   "height":16,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"9ecd542d-973b-4b5d-8458-0f49acbc9d8a","blendMode":0,"displayName":"default","isLocked":false,"name":"9ecd542d-973b-4b5d-8458-0f49acbc9d8a","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"9ecd542d-973b-4b5d-8458-0f49acbc9d8a","blendMode":0,"displayName":"default","isLocked":false,"name":"9ecd542d-973b-4b5d-8458-0f49acbc9d8a","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
   ],
   "name":"spr_player_attack_hitbox",
   "nineSlice":null,

@@ -15,3 +15,4 @@ player_spawn_point_x = obj_player.x
 player_spawn_point_y = obj_player.y
 player_life_count = 3
 respawn_player = false
+score = 0

@@ -24,6 +24,7 @@ if (countdown_active) {
 
 if (respawn_player) {
     respawn_player = false
+    score -= 100
     if (player_life_count > 0) {
         instance_create_layer(player_spawn_point_x, player_spawn_point_y, "Instances", obj_player)
         player_life_count--

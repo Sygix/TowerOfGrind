@@ -11,4 +11,5 @@ if (countdown_active) {
     draw_text(10, 10, "Temps restant: " + string(countdown_text))
 }
 
-draw_text(10, 30, "Vie(s): " + string(player_life_count))
+draw_text(10, camera_get_view_height(camera_get_active()) - 30, "Vie(s): " + string(player_life_count))
+draw_text(10, 30, "Score : " + string(score))
