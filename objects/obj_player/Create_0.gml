@@ -1,3 +1,6 @@
+health = 100
+damage = 100
+
 hsp = 0
 vsp = 0
 movespd = 1
@@ -12,5 +15,3 @@ enum Orientation {
 }
 
 orientation = Orientation.LEFT
-
-hitByAttack = ds_list_create()

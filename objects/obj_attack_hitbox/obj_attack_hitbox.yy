@@ -1,9 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_player_attack_hitbox",
-  "eventList":[],
+  "%Name":"obj_attack_hitbox",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"obj_player_attack_hitbox",
+  "name":"obj_attack_hitbox",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",

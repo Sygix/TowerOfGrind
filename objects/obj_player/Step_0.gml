@@ -24,18 +24,21 @@ if (is_attacking) {
 function SpawnHitbox() {
     switch (orientation) {
         case Orientation.LEFT: 
-            obj = instance_create_depth(x - sprite_width / 2, y - sprite_height / 4, depth, obj_player_attack_hitbox)
+            obj = instance_create_depth(x - sprite_width / 2, y - sprite_height / 4, depth, obj_attack_hitbox)
         break
         case Orientation.RIGHT : 
-            obj = instance_create_depth(x, y - sprite_height / 4, depth, obj_player_attack_hitbox)
+            obj = instance_create_depth(x, y - sprite_height / 4, depth, obj_attack_hitbox)
         break
         case Orientation.UP: 
-            obj = instance_create_depth(x - sprite_width / 4, y - sprite_height / 2, depth, obj_player_attack_hitbox)
+            obj = instance_create_depth(x - sprite_width / 4, y - sprite_height / 2, depth, obj_attack_hitbox)
         break
         case Orientation.DOWN : 
-            obj = instance_create_depth(x - sprite_width / 4, y, depth, obj_player_attack_hitbox)
+            obj = instance_create_depth(x - sprite_width / 4, y, depth, obj_attack_hitbox)
         break
     }
+    obj.creator = object_index
+    obj.damage = damage
+    show_debug_message("HELLo")
 }
 
 
@@ -105,21 +108,4 @@ if (!is_attacking) {
         }
         image_index = 0
     }
-} else {
-    /*var hitByAttackNow = ds_list_create()
-    var hits = instance_place_list(x, y, obj_enemies, hitByAttackNow, false)
-    
-    if (hits > 0) {
-        for (var i = 0; i < hits; i++) {
-            var hitID = ds_list_find_value(hitByAttackNow, i)
-            if (ds_list_find_index(hitByAttack, hitID) == -1) {
-                ds_list_add(hitByAttack, hitID)
-                with (hitID) {
-                    show_debug_message("HIT")
-                }
-            }
-        }
-    }
-    
-    ds_list_destroy(hitByAttackNow)*/
 }
