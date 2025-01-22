@@ -54,16 +54,16 @@ if (!is_dead) {
     function SpawnHitbox() {
         switch (orientation) {
             case Orientation.LEFT: 
-                attack_hitbox = instance_create_depth(x - sprite_width / 2, y - sprite_height / 4, depth, obj_attack_hitbox)
+                attack_hitbox = instance_create_depth(x - sprite_width / 4, y - sprite_height / 8, depth, obj_attack_hitbox)
             break
             case Orientation.RIGHT : 
-                attack_hitbox = instance_create_depth(x, y - sprite_height / 4, depth, obj_attack_hitbox)
+                attack_hitbox = instance_create_depth(x - sprite_width / 4, y - sprite_height / 8, depth, obj_attack_hitbox)
             break
             case Orientation.UP: 
-                attack_hitbox = instance_create_depth(x - sprite_width / 4, y - sprite_height / 2, depth, obj_attack_hitbox)
+                attack_hitbox = instance_create_depth(x, y - sprite_height / 4, depth, obj_attack_hitbox)
             break
             case Orientation.DOWN : 
-                attack_hitbox = instance_create_depth(x - sprite_width / 4, y, depth, obj_attack_hitbox)
+                attack_hitbox = instance_create_depth(x, y + sprite_height / 8, depth, obj_attack_hitbox)
             break
         }
         attack_hitbox.creator = object_index
