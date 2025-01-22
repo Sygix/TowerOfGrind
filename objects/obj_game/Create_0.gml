@@ -1,4 +1,5 @@
 countdown_duration = 60 * 5
+countdown = countdown_duration
 start_time = current_time
 countdown_active = true
 doors_close_this_frame = false
@@ -16,3 +17,4 @@ player_spawn_point_y = obj_player.y
 player_life_count = 3
 respawn_player = false
 score = 0
+game_finish = false

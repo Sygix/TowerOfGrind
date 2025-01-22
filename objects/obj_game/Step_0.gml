@@ -16,17 +16,20 @@ if (countdown_active) {
     }
     
     if (countdown <= 0) {
+        game_finish = true
         countdown_active = false
-        game_end()
-        //room_goto()
+        instance_deactivate_object(obj_player)
     }
 }
 
 if (respawn_player) {
     respawn_player = false
     score -= 100
-    if (player_life_count > 0) {
+    if (player_life_count > 1) {
         instance_create_layer(player_spawn_point_x, player_spawn_point_y, "Instances", obj_player)
         player_life_count--
+    } else {
+        game_finish = true
+        countdown_active = false
     }
 }
