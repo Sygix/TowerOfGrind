@@ -9,11 +9,35 @@ var keys = {
 hsp = (keys.right - keys.left) * movespd
 vsp = (keys.down - keys.up) * movespd
 
-if (is_attacking && image_index >= 4) {
-    is_attacking = false
-    mask_index = spr_Player_Front_Walk
-    ds_list_clear(hitByAttack)
+if (is_attacking) {
+    switch (image_index) {
+        case 2: SpawnHitbox() break
+        case 4: 
+            instance_destroy(obj)
+            is_attacking = false
+            mask_index = spr_Player_Front_Walk
+            ds_list_clear(hitByAttack)
+        break
+    }
 }
+
+function SpawnHitbox() {
+    switch (orientation) {
+        case Orientation.LEFT: 
+            obj = instance_create_depth(x - sprite_width / 2, y - sprite_height / 4, depth, obj_player_attack_hitbox)
+        break
+        case Orientation.RIGHT : 
+            obj = instance_create_depth(x, y - sprite_height / 4, depth, obj_player_attack_hitbox)
+        break
+        case Orientation.UP: 
+            obj = instance_create_depth(x - sprite_width / 4, y - sprite_height / 2, depth, obj_player_attack_hitbox)
+        break
+        case Orientation.DOWN : 
+            obj = instance_create_depth(x - sprite_width / 4, y, depth, obj_player_attack_hitbox)
+        break
+    }
+}
+
 
 if (!is_attacking) {
     if (hsp == 0 && vsp == 0) {
@@ -82,7 +106,7 @@ if (!is_attacking) {
         image_index = 0
     }
 } else {
-    var hitByAttackNow = ds_list_create()
+    /*var hitByAttackNow = ds_list_create()
     var hits = instance_place_list(x, y, obj_enemies, hitByAttackNow, false)
     
     if (hits > 0) {
@@ -97,5 +121,5 @@ if (!is_attacking) {
         }
     }
     
-    ds_list_destroy(hitByAttackNow)
+    ds_list_destroy(hitByAttackNow)*/
 }
