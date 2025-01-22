@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_doors",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_bigdoor_front",
+  "eventList":[],
   "managed":true,
-  "name":"obj_doors",
+  "name":"obj_bigdoor_front",
   "overriddenProperties":[],
   "parent":{
     "name":"Doors",
     "path":"folders/Objects/Doors.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_doors",
+    "path":"objects/obj_doors/obj_doors.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
