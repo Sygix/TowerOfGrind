@@ -3,7 +3,7 @@ if (countdown_active) {
     countdown = max(0, countdown_duration - elapsed_time)
     random_set_seed(date_get_second(date_current_datetime()))
     
-    if ((round(countdown) % doors_closing_interval == 0) && (round(countdown) != countdown_duration) && (array_length(doors)) > 0) {
+    if ((round(countdown) % round(doors_closing_interval) == 0) && (round(countdown) != countdown_duration) && (array_length(doors)) > 0) {
         if (!doors_close_this_frame) {
             doors_close_this_frame = true
             var door_to_close = random(array_length(doors))
