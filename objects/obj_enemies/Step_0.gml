@@ -1,26 +1,23 @@
-function check_proximity_for_chase() {
-    if (distance_to_object(obj_player) < chase_range) {
-        start_chasing();
-    }
+function is_close_to_player() {
+    return distance_to_object(obj_player) < chase_range
 }
 
-function flee_from_player() {
-    var player_direction = point_direction(x, y, obj_player.x, obj_player.y);
-    direction = player_direction + runaway_offset + random(40);
+function resolve_blocked_state() {
+    direction = point_direction(x, y, obj_player.x, obj_player.y);
+    var move_x = lengthdir_x(move_speed, direction);
+    var move_y = lengthdir_y(move_speed, direction);
+    var future_x = x + move_x;
+    var future_y = y + move_y;
 
-    var move_x = lengthdir_x(move_speed * 1.5, direction);
-    var move_y = lengthdir_y(move_speed * 1.5, direction);
-    move_with_collision(move_x, move_y);
-
-    if (distance_to_object(obj_player) > runaway_range) {
-        movement_state = MOVEMENT_STATE.IDLE;
+    if (!place_meeting(future_x, future_y, obj_player) && !place_meeting(future_x, future_y, tilemap_collision)) {
+        start_chasing();
     }
 }
 
 function handle_movement() {
     switch (movement_state) {
         case MOVEMENT_STATE.IDLE:
-            check_proximity_for_chase();
+            if(is_close_to_player()) start_chasing();
             break;
 
         case MOVEMENT_STATE.RUNNING:
@@ -33,11 +30,19 @@ function handle_movement() {
                 stop_chasing();
             }
             break;
+        
+        case MOVEMENT_STATE.BLOCKED:
+            if(is_close_to_player()) {
+                resolve_blocked_state();
+            } else {
+                stop_chasing();
+            }
+            break;
     }
 }
 
 function update_animation() {
-    if (movement_state == MOVEMENT_STATE.IDLE) {
+    if (movement_state == MOVEMENT_STATE.IDLE || movement_state == MOVEMENT_STATE.BLOCKED) {
         // Idle
         if (direction > 45 && direction <= 135) {
             sprite_index = spr_StickGoblin_Back_Idle;

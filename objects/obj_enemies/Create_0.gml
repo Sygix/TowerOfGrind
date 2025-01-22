@@ -1,6 +1,7 @@
 enum MOVEMENT_STATE {
     IDLE,
-    RUNNING
+    RUNNING,
+    BLOCKED
 }
 
 enum ENEMY_STATE {
@@ -32,12 +33,20 @@ function stop_chasing() {
 function move_with_collision(move_x, move_y) {
     var future_x = x + move_x;
     var future_y = y + move_y;
+    
+    // Collision with player
+    if(place_meeting(future_x, future_y, obj_player)) {
+        movement_state = MOVEMENT_STATE.BLOCKED;
+        return;
+    }
 
     var cell_x = tilemap_get_cell_x_at_pixel(tilemap_collision, future_x, future_y);
     var cell_y = tilemap_get_cell_y_at_pixel(tilemap_collision, future_x, future_y);
 
-    if (tilemap_get(tilemap_collision, cell_x, cell_y) == 0) { // 0 = Pas d'obstacle
+    if (tilemap_get(tilemap_collision, cell_x, cell_y) == 0 && !place_meeting(future_x, future_y, tilemap_collision)) { // 0 = Pas d'obstacle
         x = future_x;
         y = future_y;
+    } else {
+        movement_state = MOVEMENT_STATE.BLOCKED;
     }
 }
