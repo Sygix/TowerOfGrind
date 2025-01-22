@@ -1,3 +1,7 @@
+if(!instance_exists(obj_player)) {
+    stop_chasing();
+};
+    
 switch (movement_state) {
     case MOVEMENT_STATE.RUNNING:
         direction = point_direction(x, y, obj_player.x, obj_player.y);
