@@ -16,7 +16,6 @@ if (is_attacking) {
             instance_destroy(obj)
             is_attacking = false
             mask_index = spr_Player_Front_Walk
-            ds_list_clear(hitByAttack)
         break
     }
 }
@@ -38,7 +37,6 @@ function SpawnHitbox() {
     }
     obj.creator = object_index
     obj.damage = damage
-    show_debug_message("HELLo")
 }
 
 

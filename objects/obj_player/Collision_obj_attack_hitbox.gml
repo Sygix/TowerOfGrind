@@ -1,4 +1,4 @@
-if (other.creator != self) {
+if (other.creator != object_index) {
     health -= other.damage
     
     if (health <= 0) {
