@@ -1,5 +1,6 @@
 health = 100
 damage = 100
+is_dead = false
 
 hsp = 0
 vsp = 0

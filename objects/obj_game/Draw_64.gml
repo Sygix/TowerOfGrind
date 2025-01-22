@@ -10,3 +10,5 @@ if (countdown_active) {
     var countdown_text = string(minutes) + ":" + seconds_string
     draw_text(10, 10, "Temps restant: " + string(countdown_text))
 }
+
+draw_text(10, 30, "Vie(s): " + string(player_life_count))
