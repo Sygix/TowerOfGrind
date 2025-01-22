@@ -9,6 +9,35 @@ var keys = {
 hsp = (keys.right - keys.left) * movespd
 vsp = (keys.down - keys.up) * movespd
 
+if (place_meeting(x, y, obj_game.closed_doors)) {
+    var collide_door = instance_place(x, y, obj_doors)
+    var found = false
+    var i = 1
+    if (collide_door.sprite_width < collide_door.sprite_height) {
+        while (!found) {
+            if (!place_meeting(x + i, y, obj_game.closed_doors)) {
+                found = true
+                x += i
+            } else if (!place_meeting(x - i, y, obj_game.closed_doors)) {
+                found = true
+                x -= i
+            }
+            i++
+        }
+    } else {
+        while (!found) {
+            if (!place_meeting(x, y + i, obj_game.closed_doors)) {
+                found = true
+                y += i
+            } else if (!place_meeting(x, y - i, obj_game.closed_doors)) {
+                found = true
+                y -= i
+            }
+            i++
+        }
+    }
+}
+
 if (is_attacking) {
     switch (image_index) {
         case 2: SpawnHitbox() break
@@ -54,28 +83,28 @@ if (!is_attacking) {
         orientation = Orientation.LEFT
         image_xscale = 1
         sprite_index = spr_Player_Side_Walk
-        if (!place_meeting(x - movespd, y, tilemap_collision)) {
+        if ((!place_meeting(x - movespd, y, tilemap_collision)) && (!place_meeting(x - movespd, y, obj_game.closed_doors))) {
             x += hsp
         }
     } else if (keys.right) {
         orientation = Orientation.RIGHT
         image_xscale = -1
         sprite_index = spr_Player_Side_Walk
-        if (!place_meeting(x + movespd, y, tilemap_collision)) {
+        if ((!place_meeting(x + movespd, y, tilemap_collision)) && (!place_meeting(x + movespd, y, obj_game.closed_doors))) {
             x += hsp
         }
     } else if (keys.up) {
         orientation = Orientation.UP
         image_xscale = 1
         sprite_index = spr_Player_Back_Walk
-        if (!place_meeting(x, y - movespd, tilemap_collision)) {
+        if ((!place_meeting(x, y - movespd, tilemap_collision)) && (!place_meeting(x, y - movespd, obj_game.closed_doors))) {
             y += vsp
         }
     } else if (keys.down) {
         orientation = Orientation.DOWN
         image_xscale = 1
         sprite_index = spr_Player_Front_Walk
-        if (!place_meeting(x, y + movespd, tilemap_collision)) {
+        if ((!place_meeting(x, y + movespd, tilemap_collision)) && (!place_meeting(x, y + movespd, obj_game.closed_doors))) {
             y += vsp
         }
     }

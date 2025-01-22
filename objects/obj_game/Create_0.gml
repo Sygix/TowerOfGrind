@@ -7,5 +7,6 @@ for (var i = 0; i < instance_number(obj_doors); ++i;)
 {
     doors[i] = instance_find(obj_doors, i);
 }
+closed_doors = []
 
-doors_closing_interval = countdown_duration / array_length(doors)
+doors_closing_interval = 2/*countdown_duration / array_length(doors)*/

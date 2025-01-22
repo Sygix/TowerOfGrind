@@ -4,5 +4,6 @@ if (animate) {
     if (image_index == 0) {
         image_speed = 0
         animate = false
+        collision_enable = true
     }
 }

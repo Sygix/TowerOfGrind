@@ -3,11 +3,12 @@ if (countdown_active) {
     countdown = max(0, countdown_duration - elapsed_time)
     random_set_seed(date_get_second(date_current_datetime()))
     
-    if ((round(countdown) % doors_closing_interval == 0) && (round(countdown) != countdown_duration)) {
+    if ((round(countdown) % doors_closing_interval == 0) && (round(countdown) != countdown_duration) && (array_length(doors)) > 0) {
         if (!doors_close_this_frame) {
             doors_close_this_frame = true
             var door_to_close = random(array_length(doors))
             doors[door_to_close].animate = true
+            array_insert(closed_doors, array_length(closed_doors), doors[door_to_close])
             array_delete(doors, door_to_close, 1)
         }
     } else {
