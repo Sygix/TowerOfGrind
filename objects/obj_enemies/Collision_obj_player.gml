@@ -1,1 +1,2 @@
-movement_state = MOVEMENT_STATE.BLOCKED;
+stop_chasing();
+start_fighting();

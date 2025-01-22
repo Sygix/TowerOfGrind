@@ -6,22 +6,24 @@ enum MOVEMENT_STATE {
 
 enum ENEMY_STATE {
     SEARCHING,
-    CHASING
+    CHASING,
+    FIGHTING,
 }
 
 health = 100;
 move_speed = 0.7;
+attack_speed = 1.2; //seconds
 
 enemy_state = ENEMY_STATE.SEARCHING;
 movement_state = MOVEMENT_STATE.IDLE;
 
 chase_range = 50;
 stop_chase_range = 60;
-repulsion_distance = 5;
 
 tilemap_collision = layer_tilemap_get_id("Collision");
 
-alarm[0] = 10;
+alarm[0] = 10; // Frames number
+alarm[1] = attack_speed * game_get_speed(gamespeed_fps);
 
 // Fonctions
 function start_chasing() {
@@ -30,6 +32,16 @@ function start_chasing() {
 }
 
 function stop_chasing() {
+    enemy_state = ENEMY_STATE.SEARCHING;
+    movement_state = MOVEMENT_STATE.IDLE;
+}
+
+function start_fighting() {
+    enemy_state = ENEMY_STATE.FIGHTING;
+    movement_state = MOVEMENT_STATE.BLOCKED;
+}
+
+function stop_fighting() {
     enemy_state = ENEMY_STATE.SEARCHING;
     movement_state = MOVEMENT_STATE.IDLE;
 }
@@ -60,9 +72,10 @@ function move_with_collision(move_x, move_y) {
     if (tilemap_get(tilemap_collision, cell_x, cell_y) == 0 && !place_meeting(future_x, future_y, tilemap_collision)) { 
         x = future_x;
         y = future_y;
-    } else {
-        movement_state = MOVEMENT_STATE.BLOCKED;
+        return;
     }
+    
+    movement_state = MOVEMENT_STATE.BLOCKED;
 }
 
 function resolve_blocked_state() {
@@ -92,15 +105,31 @@ function update_animation() {
             sprite_index = spr_StickGoblin_Side_Idle;
             image_xscale = (direction <= 180) ? 1 : -1;
         }
-    } else {
-        // Animation Walk
-        if (direction > 45 && direction <= 135) {
-            sprite_index = spr_StickGoblin_Back_Walk;
-        } else if (direction > 225 && direction <= 315) {
-            sprite_index = spr_StickGoblin_Front_Walk;
-        } else {
-            sprite_index = spr_StickGoblin_Side_Walk;
-            image_xscale = (direction <= 180) ? 1 : -1;
-        }
+        
+        return;
     }
+    
+    // Animation Walk
+    if (direction > 45 && direction <= 135) {
+        sprite_index = spr_StickGoblin_Back_Walk;
+    } else if (direction > 225 && direction <= 315) {
+        sprite_index = spr_StickGoblin_Front_Walk;
+    } else {
+        sprite_index = spr_StickGoblin_Side_Walk;
+        image_xscale = (direction <= 180) ? 1 : -1;
+    }
+}
+
+function spawn_attack_hitbox() {
+    direction = point_direction(x, y, obj_player.x, obj_player.y);
+    var offset_x = lengthdir_x(sprite_width / 2, direction);
+    var offset_y = lengthdir_y(sprite_height / 2, direction);
+
+    var spawn_x = x + offset_x;
+    var spawn_y = y + offset_y;
+
+    var hitbox = instance_create_layer(spawn_x, spawn_y, "Instances", obj_attack_hitbox);
+
+    hitbox.creator = self;
+    hitbox.damage = 50;
 }
