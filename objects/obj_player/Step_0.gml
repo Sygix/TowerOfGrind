@@ -47,7 +47,6 @@ if (!is_dead) {
                     instance_destroy(attack_hitbox)
                 }
                 is_attacking = false
-                mask_index = spr_Player_Front_Walk
             break
         }
     }
@@ -118,22 +117,18 @@ if (!is_dead) {
                 case Orientation.LEFT: 
                     sprite_index = spr_Player_Side_Attack 
                     image_xscale = 1 
-                    mask_index = spr_Player_Side_Attack_Hitbox
                 break
                 case Orientation.RIGHT: 
                     sprite_index = spr_Player_Side_Attack 
                     image_xscale = -1
-                    mask_index = spr_Player_Side_Attack_Hitbox
                 break
                 case Orientation.UP: 
                     sprite_index = spr_Player_Back_Attack 
                     image_xscale = 1
-                    mask_index = spr_Player_Back_Attack_Hitbox
                 break
                 case Orientation.DOWN: 
                     sprite_index = spr_Player_Front_Attack 
                     image_xscale = 1 
-                    mask_index = spr_Player_Front_Attack_Hitbox
                 break
             }
             image_index = 0
