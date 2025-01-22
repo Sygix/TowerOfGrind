@@ -12,13 +12,14 @@ enum ENEMY_STATE {
 
 health = 100;
 move_speed = 0.7;
-attack_speed = 1.2; //seconds
+attack_speed = 1.5; //seconds
 
 enemy_state = ENEMY_STATE.SEARCHING;
 movement_state = MOVEMENT_STATE.IDLE;
 
 chase_range = 50;
 stop_chase_range = 60;
+hitbox_range = 16;
 
 tilemap_collision = layer_tilemap_get_id("Collision");
 
@@ -121,6 +122,7 @@ function update_animation() {
 }
 
 function spawn_attack_hitbox() {
+    show_debug_message("attack")
     direction = point_direction(x, y, obj_player.x, obj_player.y);
     var offset_x = lengthdir_x(sprite_width / 2, direction);
     var offset_y = lengthdir_y(sprite_height / 2, direction);
@@ -131,5 +133,5 @@ function spawn_attack_hitbox() {
     var hitbox = instance_create_layer(spawn_x, spawn_y, "Instances", obj_attack_hitbox);
 
     hitbox.creator = self;
-    hitbox.damage = 50;
+    hitbox.damage = 10;
 }
