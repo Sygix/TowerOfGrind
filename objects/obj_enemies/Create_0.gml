@@ -10,6 +10,8 @@ enum ENEMY_STATE {
     FIGHTING,
 }
 
+sprite_fps = 6;
+default_image_speed = sprite_get_number(sprite_index) / sprite_fps;
 health = 100;
 move_speed = 0.7;
 attack_speed = 1.5; //seconds
@@ -104,7 +106,8 @@ function resolve_blocked_state() {
 }
 
 function update_animation() {
-    if (movement_state == MOVEMENT_STATE.IDLE || movement_state == MOVEMENT_STATE.BLOCKED) {
+    image_speed = default_image_speed;
+    if (enemy_state != ENEMY_STATE.FIGHTING && (movement_state == MOVEMENT_STATE.IDLE || movement_state == MOVEMENT_STATE.BLOCKED)) {
         // Animation Idle
         if (direction > 45 && direction <= 135) {
             sprite_index = spr_StickGoblin_Back_Idle;
@@ -115,6 +118,22 @@ function update_animation() {
             image_xscale = (direction <= 180) ? 1 : -1;
         }
         
+        return;
+    }
+    
+    if (enemy_state == ENEMY_STATE.FIGHTING) {
+        // Animation Fighting
+        if (direction > 45 && direction <= 135) {
+            sprite_index = spr_StickGoblin_Back_Attack;
+            image_speed = sprite_get_number(sprite_index) / (attack_speed * sprite_fps);
+        } else if (direction > 225 && direction <= 315) {
+            sprite_index = spr_StickGoblin_Front_Attack;
+            image_speed = sprite_get_number(sprite_index) / (attack_speed * sprite_fps);
+        } else {
+            sprite_index = spr_StickGoblin_Side_Attack;
+            image_xscale = (direction <= 180) ? 1 : -1;
+            image_speed = sprite_get_number(sprite_index) / (attack_speed * sprite_fps);
+        }
         return;
     }
     
