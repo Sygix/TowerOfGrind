@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"sd_goblin_attack.wav",
   "type":0,
-  "volume":0.6,
+  "volume":1.0,
 }

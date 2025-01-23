@@ -6,8 +6,8 @@
   "name":"obj_objects",
   "overriddenProperties":[],
   "parent":{
-    "name":"Bookshelf",
-    "path":"folders/Objects/Bookshelf.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

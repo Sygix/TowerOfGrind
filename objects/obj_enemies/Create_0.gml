@@ -12,7 +12,7 @@ enum ENEMY_STATE {
 
 sprite_fps = 6;
 default_image_speed = sprite_get_number(sprite_index) / sprite_fps;
-health = 100;
+enemy_health = 100;
 move_speed = 0.7;
 attack_speed = 1.5; //seconds
 
@@ -72,6 +72,12 @@ function move_with_collision(move_x, move_y) {
     
     // Collision avec une porte
     if (place_meeting(future_x, future_y, obj_game.closed_doors)) {
+        movement_state = MOVEMENT_STATE.BLOCKED;
+        return;
+    }
+    
+    // Collision avec les objets de déco
+    if (place_meeting(future_x, future_y, obj_objects)) {
         movement_state = MOVEMENT_STATE.BLOCKED;
         return;
     }
