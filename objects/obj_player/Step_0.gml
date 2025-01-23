@@ -91,28 +91,28 @@ if (!is_dead) {
             orientation = Orientation.LEFT
             image_xscale = 1
             sprite_index = spr_Player_Side_Walk
-            if ((!place_meeting(x - movespd, y, tilemap_collision))) {
+            if ((!place_meeting(x - movespd, y, tilemap_collision)) && (!place_meeting(x - movespd, y, obj_game.closed_doors)) && !place_meeting(x - movespd, y, obj_objects)) {
                 x += hsp
             }
         } else if (keys.right) {
             orientation = Orientation.RIGHT
             image_xscale = -1
             sprite_index = spr_Player_Side_Walk
-            if ((!place_meeting(x + movespd, y, tilemap_collision))) {
+            if ((!place_meeting(x + movespd, y, tilemap_collision)) && (!place_meeting(x + movespd, y, obj_game.closed_doors)) && !place_meeting(x + movespd, y, obj_objects)) {
                 x += hsp
             }
         } else if (keys.up) {
             orientation = Orientation.UP
             image_xscale = 1
             sprite_index = spr_Player_Back_Walk
-            if ((!place_meeting(x, y - movespd, tilemap_collision)) && (!place_meeting(x, y - movespd, obj_game.closed_doors))) {
+            if ((!place_meeting(x, y - movespd, tilemap_collision)) && (!place_meeting(x, y - movespd, obj_game.closed_doors)) && !place_meeting(x, y - movespd, obj_objects)) {
                 y += vsp
             }
         } else if (keys.down) {
             orientation = Orientation.DOWN
             image_xscale = 1
             sprite_index = spr_Player_Front_Walk
-            if ((!place_meeting(x, y + movespd, tilemap_collision)) && (!place_meeting(x, y + movespd, obj_game.closed_doors))) {
+            if ((!place_meeting(x, y + movespd, tilemap_collision)) && (!place_meeting(x, y + movespd, obj_game.closed_doors)) && !place_meeting(x, y + movespd, obj_objects)) {
                 y += vsp
             }
         }
