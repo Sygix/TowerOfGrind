@@ -18,3 +18,5 @@ player_life_count = 3
 respawn_player = false
 score = 0
 game_finish = false
+
+ambiant_sound = audio_play_sound(sd_Ambiant_Sound, 2, true)

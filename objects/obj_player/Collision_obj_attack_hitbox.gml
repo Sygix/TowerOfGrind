@@ -1,9 +1,11 @@
 if (other.creator != object_index) {
     health -= other.damage
     show_debug_message("HIT")
+    audio_play_sound(sd_hurt, 1, false)
     
     if (health <= 0) {
         is_dead = true
+        audio_stop_sound(player_walk_sound)
         
         switch (orientation) {
             case Orientation.LEFT: 

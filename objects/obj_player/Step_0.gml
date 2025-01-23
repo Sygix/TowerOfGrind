@@ -41,6 +41,7 @@ if (!is_dead) {
     
     if (is_attacking) {
         switch (image_index) {
+            case 1: audio_play_sound(sd_sword_hit, 1, false) break
             case 2: SpawnHitbox() break
             case 4: 
                 if (instance_exists(attack_hitbox)) {
@@ -73,11 +74,16 @@ if (!is_dead) {
     
     if (!is_attacking) {
         if (hsp == 0 && vsp == 0) {
+            audio_pause_sound(player_walk_sound)
             switch (orientation) {
                 case Orientation.LEFT: sprite_index = spr_Player_Side_Idle image_xscale = 1 break
                 case Orientation.RIGHT: sprite_index = spr_Player_Side_Idle image_xscale = -1 break
                 case Orientation.UP: sprite_index = spr_Player_Back_Idle image_xscale = 1 break
                 case Orientation.DOWN: sprite_index = spr_Player_Front_Idle image_xscale = 1 break
+            }
+        } else {
+            if (audio_is_paused(player_walk_sound)) {
+                audio_resume_sound(player_walk_sound)
             }
         }
         
@@ -112,6 +118,7 @@ if (!is_dead) {
         }
         
         if (keys.space) {
+            audio_pause_sound(player_walk_sound)
             is_attacking = true
             switch (orientation) {
                 case Orientation.LEFT: 

@@ -29,6 +29,7 @@ if (respawn_player) {
         instance_create_layer(player_spawn_point_x, player_spawn_point_y, "Instances", obj_player)
         player_life_count--
     } else {
+        audio_stop_sound(ambiant_sound)
         game_finish = true
         countdown_active = false
     }
