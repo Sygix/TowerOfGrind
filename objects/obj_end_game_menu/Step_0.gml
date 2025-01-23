@@ -20,6 +20,7 @@ if (keys.accept) {
     audio_play_sound(sd_Menu_Sound_Forward, 1, false)
     switch (pos) {
         case 0: room_goto(Room1) break
-        case 1: game_end() break
+        case 1: room_goto(Room_MainMenu) break
+        case 2: game_end() break
     }
 }

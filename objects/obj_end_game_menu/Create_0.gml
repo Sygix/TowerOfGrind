@@ -22,5 +22,6 @@ game_stat[3] = string(minutes) + ":" + string(seconds)
 game_stats_length = array_length(game_stat)
 
 option[0] = "Reessayer"
-option[1] = "Quitter"
+option[1] = "Menu principal"
+option[2] = "Quitter"
 options_length = array_length(option)
