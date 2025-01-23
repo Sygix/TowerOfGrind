@@ -20,6 +20,7 @@ movement_state = MOVEMENT_STATE.IDLE;
 chase_range = 50;
 stop_chase_range = 60;
 hitbox_range = 16;
+kill_score = 15;
 
 tilemap_collision = layer_tilemap_get_id("Collision");
 
@@ -66,6 +67,12 @@ function move_with_collision(move_x, move_y) {
         movement_state = MOVEMENT_STATE.BLOCKED
         return;
     }
+    
+    // Collision avec une porte
+    if (place_meeting(future_x, future_y, obj_game.closed_doors)) {
+        movement_state = MOVEMENT_STATE.BLOCKED;
+        return;
+    }
 
     var cell_x = tilemap_get_cell_x_at_pixel(tilemap_collision, future_x, future_y);
     var cell_y = tilemap_get_cell_y_at_pixel(tilemap_collision, future_x, future_y);
@@ -88,7 +95,8 @@ function resolve_blocked_state() {
 
     if (
         !place_meeting(future_x, future_y, obj_player) && 
-        !place_meeting(future_x, future_y, obj_enemies) && 
+        !place_meeting(future_x, future_y, obj_enemies) &&
+        !place_meeting(future_x, future_y, obj_game.doors) &&
         !place_meeting(future_x, future_y, tilemap_collision)
     ) {
         start_chasing();
@@ -132,6 +140,6 @@ function spawn_attack_hitbox() {
 
     var hitbox = instance_create_layer(spawn_x, spawn_y, "Instances", obj_attack_hitbox);
 
-    hitbox.creator = self;
+    hitbox.creator = object_index;
     hitbox.damage = 10;
 }

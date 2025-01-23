@@ -91,14 +91,14 @@ if (!is_dead) {
             orientation = Orientation.LEFT
             image_xscale = 1
             sprite_index = spr_Player_Side_Walk
-            if ((!place_meeting(x - movespd, y, tilemap_collision)) && (!place_meeting(x - movespd, y, obj_game.closed_doors))) {
+            if ((!place_meeting(x - movespd, y, tilemap_collision))) {
                 x += hsp
             }
         } else if (keys.right) {
             orientation = Orientation.RIGHT
             image_xscale = -1
             sprite_index = spr_Player_Side_Walk
-            if ((!place_meeting(x + movespd, y, tilemap_collision)) && (!place_meeting(x + movespd, y, obj_game.closed_doors))) {
+            if ((!place_meeting(x + movespd, y, tilemap_collision))) {
                 x += hsp
             }
         } else if (keys.up) {

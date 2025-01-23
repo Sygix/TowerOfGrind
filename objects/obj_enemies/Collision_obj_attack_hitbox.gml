@@ -1,5 +1,10 @@
-if (other.creator != self && object_is_ancestor(self.object_index, other.creator.object_index)) {
+show_debug_message("attack_hitbox");
+if (other.creator != object_index) {
+    show_debug_message(other.damage);
     health -= other.damage;
-    if(health <= 100) instance_destroy();
+    if(health <= 100) {
+        instance_destroy();
+        score += kill_score;
+    }
     instance_destroy(other);
 }
