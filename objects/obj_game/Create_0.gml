@@ -20,3 +20,5 @@ score = 0
 game_finish = false
 
 ambiant_sound = audio_play_sound(sd_Ambiant_Sound, 2, true)
+
+in_game_ui = instance_create_layer(x, y, "Instances_UI", obj_in_game_menu)
