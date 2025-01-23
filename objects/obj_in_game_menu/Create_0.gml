@@ -8,7 +8,12 @@ margin = 5
 border = 4
 space = 6
 
-stat[0] = "Temps restant : " + string(floor(obj_game.countdown / 60)) + ":" + string(floor(obj_game.countdown % 60))
+minutes = floor(obj_game.countdown / 60)
+seconds = floor(obj_game.countdown % 60)
+if (seconds < 10) {
+    seconds = "0" + string(seconds)
+}
+stat[0] = "Temps restant : " + string(minutes) + ":" + string(seconds)
 stat[1] = "Score : " + string(score)
 stats_length = array_length(stat)
 

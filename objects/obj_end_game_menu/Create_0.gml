@@ -13,7 +13,12 @@ pos = 0
 game_stat[0] = "Score"
 game_stat[1] = score
 game_stat[2] = "Temps restant"
-game_stat[3] = string(floor(obj_game.countdown / 60)) + ":" + string(floor(obj_game.countdown % 60))
+minutes = floor(obj_game.countdown / 60)
+seconds = floor(obj_game.countdown % 60)
+if (seconds < 10) {
+    seconds = "0" + string(seconds)
+}
+game_stat[3] = string(minutes) + ":" + string(seconds)
 game_stats_length = array_length(game_stat)
 
 option[0] = "Reessayer"
