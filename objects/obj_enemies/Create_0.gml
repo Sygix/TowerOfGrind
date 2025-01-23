@@ -161,4 +161,6 @@ function spawn_attack_hitbox() {
 
     hitbox.creator = object_index;
     hitbox.damage = 10;
+    
+    audio_play_sound(sd_goblin_attack, 1, false);
 }
